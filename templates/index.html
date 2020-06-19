@@ -2,8 +2,11 @@
 
 <head>
 	<!-- Bootstrap libraries -->
-
+     
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+     <!-- google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
 
 
 
@@ -38,9 +41,9 @@
 
 			<ul class="menu-dropdown">
                  
-                 <li><a href="#">About </a><span class="icon"><i class="fa fa-th"></i></span></li>
+                 <li><a href="{{url_for('about')}}">About </a><span class="icon"><i class="fa fa-th"></i></span></li>
 
-				<li><a href="#">Menu </a><span class="icon"><i class="fa fa-briefcase"></i></span></li>
+				<li><a href="{{url_for('menu')}}">Menu </a><span class="icon"><i class="fa fa-briefcase"></i></span></li>
 
 			
 				<li><a href="#">Make a Booking</a><span class="icon"><i class="fa fa-expeditedssl"></i></span></li>
@@ -60,10 +63,78 @@
 
 
 
+
 {%block nav%}
+
+
+
 
 {% endblock %}
 
+
+
+
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Company<span>logo</span></h3>
+
+				<p class="footer-links">
+					<a href="#" class="link-1">Home</a>
+					
+					<a href="#">Blog</a>
+				
+					<a href="#">Pricing</a>
+				
+					<a href="#">About</a>
+					
+					<a href="#">Faq</a>
+					
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Company Name © 2015</p>
+			</div>
+
+			<div class="footer-center">
+
+				<div>
+					<i class="fa fa-map-marker"></i>
+					<p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
+				</div>
+
+				<div>
+					<i class="fa fa-phone"></i>
+					<p>+1.555.555.5555</p>
+				</div>
+
+				<div>
+					<i class="fa fa-envelope"></i>
+					<p><a href="mailto:support@company.com">support@company.com</a></p>
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p class="footer-company-about">
+					<span>About the company</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div class="footer-icons">
+
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="#"><i class="fa fa-linkedin"></i></a>
+					<a href="#"><i class="fa fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+		</footer>
 
 </body>
 
