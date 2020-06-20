@@ -11,7 +11,10 @@ def about():
 def menu():
     return render_template('menu.html')
 
-
+@app.route('/reserve')
+def reserve():
+	return render_template('reserve.html')
+	
 
 
 if __name__ == "__main__":
