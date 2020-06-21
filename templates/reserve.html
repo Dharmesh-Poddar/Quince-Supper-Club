@@ -1,11 +1,13 @@
 {% extends "index.html" %}
 
 {%block nav %}
+
+
 <div class="container">
 	<div class="row">
 		<div class="col">
 			<h1>Book your table</h1>
-			 <form action="/reserve" method="POST">
+			 <form action="{{url_for('reserve')}}" method="POST">
 
                 <div class="form-group">
                   <label>Username</label>
@@ -21,7 +23,7 @@
 
                 <div class="form-group">
                   <label>Number of Guests</label>
-                  <input class="form-control" type="number" name="No. of Guests">
+                  <input class="form-control" type="number" name="No of Guests">
                 </div>
 
                 <div class="form-group">
@@ -36,6 +38,7 @@
 
                 <button type="submit" class="btn btn-primary">Reserve</button>
 			 </form>
+		
 		</div>
     </div>
 </div>

@@ -1,5 +1,16 @@
-from flask import Flask, request,render_template
+import os
+import smtplib
+from smtplib import SMTPException
+from flask import Flask, request,render_template,redirect,request
+from flask_mail import Mail, Message
+
+
+
 app = Flask(__name__)
+
+
+
+
 
 @app.route('/')
 def about():
@@ -11,10 +22,21 @@ def about():
 def menu():
     return render_template('menu.html')
 
-@app.route('/reserve')
+
+@app.route('/reserve',methods=["GET","POST"])
 def reserve():
-	return render_template('reserve.html')
-	
+  name= request.form.get("name")
+  time= request.form.get("Time")
+  email= request.form.get("email")
+
+  message= name +"his email is" + email 
+  server = smtplib.SMTP("smtp.gmail.com",587)
+  server.starttls()
+  server.login(os.getenv('emailuser'),os.getenv('emailpass'))
+  server.sendmail(email,os.getenv('emailuser'),message)
+
+  return render_template('reserve.html')
+
 
 
 if __name__ == "__main__":
