@@ -1,4 +1,5 @@
 import os
+import stripe
 import smtplib
 from smtplib import SMTPException
 from flask import Flask, request,render_template,redirect,request
@@ -9,6 +10,12 @@ from flask_mail import Mail, Message
 app = Flask(__name__)
 
 
+
+STRIPE_PUBLISHABLE_KEY = os.getenv('stripepub')
+STRIPE_SECRET_KEY = os.getenv('stripekey')
+
+
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 
@@ -43,6 +50,8 @@ def reserve():
 @app.route('/team')
 def team():
   return render_template('team.html')
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
