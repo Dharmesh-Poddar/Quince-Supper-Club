@@ -1,4 +1,5 @@
 import os
+import data
 import stripe
 import smtplib
 from smtplib import SMTPException
@@ -51,6 +52,23 @@ def reserve():
 def team():
   return render_template('team.html')
 
+
+@app.route('/order')
+def order():
+  return render_template('order.html', key=STRIPE_PUBLISHABLE_KEY)
+
+@app.route('/charge', methods=['GET','POST'])
+def charge():
+  amount = 500
+
+  stripe.Charge.create(
+    amount=amount,
+    currency='usd',
+    card=request.form['stripeToken'],
+    description='Stripe Flask'
+  )
+
+  return render_template('charge.html', amount=amount)
 
 if __name__ == "__main__":
     app.debug = True

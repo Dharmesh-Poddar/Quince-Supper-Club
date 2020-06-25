@@ -1,0 +1,25 @@
+
+{% extends "index.html" %}
+{% block nav %}
+  
+   
+  <style type="text/css" media="screen">
+    form article label {
+      display: block;
+      margin: 5px;
+    }
+
+    form .submit {
+      margin: 15px 0;
+    }
+  </style>
+
+
+  <form action="/charge" method="post" style="margin-left: 100px;">
+    <article>
+      <label>Amount: $5.00</label>
+    </article>
+
+    <script src="https://button.stripe.com/v1/button.js" class="stripe-button" data-key="{{ key }}"></script>
+  </form>
+{% endblock %}
