@@ -37,11 +37,11 @@ def reserve():
   time= request.form.get("Time")
   email= request.form.get("email")
 
-  message= name +"his email is" + email 
+  #message= name +"his email is" + email 
   server = smtplib.SMTP("smtp.gmail.com",587)
   server.starttls()
   server.login(os.getenv('emailuser'),os.getenv('emailpass'))
-  server.sendmail(email,os.getenv('emailuser'),message)
+  server.sendmail(email,os.getenv('emailuser'))
 
   return render_template('reserve.html')
 
