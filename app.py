@@ -12,6 +12,19 @@ from wtforms import Form, BooleanField,SubmitField, StringField,TextField, TextA
 app = Flask(__name__)
 mail = Mail()
 
+app.secret_key = 'development key'
+ 
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USE_SSL"] = True
+
+app.config["MAIL_USERNAME"] = os.getenv('emailuser')
+
+app.config["MAIL_PASSWORD"] = os.getenv('emailpass')
+
+mail.init_app(app)
+
+
 
 STRIPE_PUBLISHABLE_KEY = os.getenv('stripepub')
 STRIPE_SECRET_KEY = os.getenv('stripekey')
@@ -28,6 +41,7 @@ class ContactForm(Form):
   submit = SubmitField("Send")
 
 
+
 @app.route('/')
 def about():
     return render_template('about.html')
@@ -41,27 +55,22 @@ def menu():
 
 @app.route('/reserve',methods=["GET","POST"])
 def reserve():
-  """name= request.form.get("name")
+  name= request.form.get("name")
   time= request.form.get("Time")
   email= request.form.get("email")
-
-  #message= name +"his email is" + email 
+  guest= request.form.get("NoGuests")
+  message= str(name)+"his email is"+ str(email)+ "number of table" + num(guest)
   server = smtplib.SMTP("smtp.gmail.com",587)
   server.starttls()
   server.login(os.getenv('emailuser'),os.getenv('emailpass'))
-  server.sendmail(email,os.getenv('emailuser'))
-"""
-  form= ContactForm()
+  server.sendmail(email,os.getenv('emailuser'),message)
 
+  return render_template('reserve.html')
 
-  return render_template('reserve.html',form=form)
-  
-  if request.method == 'POST':
-    return 'Mail posted.'
  
-  elif request.method == 'GET':
-    return render_template('reserve.html', form=form)
+  
 
+ 
 
 
 @app.route('/team')
@@ -69,9 +78,18 @@ def team():
   return render_template('team.html')
 
 
+
+
+
 @app.route('/order')
 def order():
   return render_template('order.html', key=STRIPE_PUBLISHABLE_KEY)
+
+
+
+
+
+
 
 @app.route('/charge', methods=['GET','POST'])
 def charge():
@@ -85,6 +103,9 @@ def charge():
   )
 
   return render_template('charge.html', amount=amount)
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)
