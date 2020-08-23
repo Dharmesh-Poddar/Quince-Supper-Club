@@ -5,11 +5,11 @@ import smtplib
 from smtplib import SMTPException
 from flask import Flask, request,render_template,redirect,request
 from flask_mail import Mail, Message
-
+from flask_wtf import Form
+from wtforms import Form, BooleanField,SubmitField, StringField,TextField, TextAreaField,PasswordField, validators
 
 
 app = Flask(__name__)
-
 
 
 STRIPE_PUBLISHABLE_KEY = os.getenv('stripepub')
@@ -18,6 +18,13 @@ STRIPE_SECRET_KEY = os.getenv('stripekey')
 
 stripe.api_key = STRIPE_SECRET_KEY
 
+
+class ContactForm(Form):
+  name = StringField("Name")
+  email = StringField("Email")
+  subject = TextField("Subject")
+  message = TextAreaField("Message")
+  submit = SubmitField("Send")
 
 
 @app.route('/')
@@ -33,7 +40,7 @@ def menu():
 
 @app.route('/reserve',methods=["GET","POST"])
 def reserve():
-  name= request.form.get("name")
+  """name= request.form.get("name")
   time= request.form.get("Time")
   email= request.form.get("email")
 
@@ -42,9 +49,17 @@ def reserve():
   server.starttls()
   server.login(os.getenv('emailuser'),os.getenv('emailpass'))
   server.sendmail(email,os.getenv('emailuser'))
+"""
+  form= ContactForm()
 
-  return render_template('reserve.html')
 
+  return render_template('reserve.html',form=form)
+  
+  if request.method == 'POST':
+    return 'Mail posted.'
+ 
+  elif request.method == 'GET':
+    return render_template('reserve.html', form=form)
 
 
 
