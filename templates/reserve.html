@@ -41,15 +41,13 @@
 </div>
 <br><br><br>
 -->
-<link rel="stylesheet" type="text/css" href="static",filename='styles/reserve.css'>
-
-<style >
-  
+<style type="text/css">
   form label {
   font-size: 1.2em;
   font-weight: bold;
   display: block;
-  padding: 10px 0;
+  padding: 20px 0;
+  margin-left: 300px;
 }
  
 form input#name,
@@ -63,6 +61,8 @@ form input#subject {
   border: 1px solid #cccccc;
   padding: 5px;
   font-size: 1.1em;
+ 
+   margin-left: 300px;
 }
  
 form textarea#message {
@@ -76,6 +76,7 @@ form textarea#message {
   margin-bottom: 10px;
   padding: 5px;
   font-size: 1.1em;
+   margin-left: 300px;
 }
  
 form input#submit {
@@ -95,6 +96,8 @@ form input#submit {
   background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
   background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
   background-image: linear-gradient(top, #f4f4f4, #e5e5e5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+
+  margin-left: 300px;
 }
  
 form input#submit:hover{
@@ -108,7 +111,10 @@ form input#submit:hover{
   background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
 }
+
 </style>
+
+
   
   <form action="{{ url_for('reserve') }}" method=post>
     {{ form.hidden_tag }}

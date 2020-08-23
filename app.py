@@ -10,6 +10,7 @@ from wtforms import Form, BooleanField,SubmitField, StringField,TextField, TextA
 
 
 app = Flask(__name__)
+mail = Mail()
 
 
 STRIPE_PUBLISHABLE_KEY = os.getenv('stripepub')
